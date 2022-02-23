@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Escola } from '../escola';
 
 @Component({
   selector: 'app-escola-create',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EscolaCreateComponent implements OnInit {
 
+  escola: Escola = new Escola();
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  onSubmit(){
+    console.log(this.escola)
   }
 
 }
