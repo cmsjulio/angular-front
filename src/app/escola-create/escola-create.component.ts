@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Escola } from '../escola';
+import { EscolaService } from '../escola.service';
 
 @Component({
   selector: 'app-escola-create',
@@ -9,13 +11,27 @@ import { Escola } from '../escola';
 export class EscolaCreateComponent implements OnInit {
 
   escola: Escola = new Escola();
-  constructor() { }
+  constructor(private escolaService: EscolaService,
+    private router: Router) { }
 
   ngOnInit(): void {
   }
 
+  saveEscola(){
+    this.escolaService.criarEscola(this.escola).subscribe(data =>{
+      console.log(data);
+      this.goToEscolaList();
+    },
+    error => console.log(error));
+  }
+
+  goToEscolaList(){
+    this.router.navigate(['/escolas']);
+  }
+
   onSubmit(){
-    console.log(this.escola)
+    console.log(this.escola);
+    this.saveEscola();
   }
 
 }

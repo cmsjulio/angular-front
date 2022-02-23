@@ -8,11 +8,17 @@ import { Escola } from './escola';
 })
 export class EscolaService {
 
+  // método para requisição GET via HTTP pro backend.
   private baseURL= "http://localhost:9999/api/v1/escolas";
   constructor(private httpClient: HttpClient) { }
 
   getEscolasList(): Observable<Escola[]>{
     return this.httpClient.get<Escola[]>(`${this.baseURL}`);
 
+  }
+
+  // método para requisição POST via HTTP pro backend.
+  criarEscola(escola: Escola): Observable<Object>{
+    return this.httpClient.post(`${this.baseURL}`, escola);
   }
 }
