@@ -1,0 +1,22 @@
+<h2> Lista de Escolas </h2>
+
+<table class = "table table-striped">
+    <thead>
+        <tr>
+            <th> Nome </th>
+            <th> Endereço </th>
+            <th> Email </th>
+            <th> Telefone </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor = "let escola of escolas" >
+            <td>{{ escola.nome }}</td>
+            <td>{{ escola.endereco }}</td>
+            <td>{{ escola.email }}</td>
+            <td>{{ escola.telefone }}</td>
+
+        </tr>
+
+    </tbody>
+</table>
