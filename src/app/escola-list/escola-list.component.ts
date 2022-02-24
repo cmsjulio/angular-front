@@ -27,6 +27,13 @@ export class EscolaListComponent implements OnInit {
 
   updateEscola(id: number){
     this.router.navigate(['escola-update', id]);
+  }
+
+  deleteEscola(id: number){
+    this.escolaService.deletarEscola(id).subscribe( data => {
+      console.log(data);
+      this.getEscolas();
+    })
 
   }
 }

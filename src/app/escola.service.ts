@@ -31,4 +31,9 @@ export class EscolaService {
   atualizarEscola(id: number, escola: Escola): Observable<Object>{
     return this.httpClient.put(`${this.baseURL}/${id}`, escola);
   }
+
+  // para deletar escola
+  deletarEscola(id: number): Observable<Object>{
+    return this.httpClient.delete(`${this.baseURL}/${id}`);
+  }
 }
