@@ -21,6 +21,7 @@ export class EscolaListComponent implements OnInit {
 
   private getEscolas(){
     this.escolaService.getEscolasList().subscribe(data => {
+      console.log(data)
       this.escolas = data;
     });
   }
