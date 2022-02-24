@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Escola } from '../escola';
 import { EscolaService } from '../escola.service';
 
@@ -11,7 +12,8 @@ export class EscolaListComponent implements OnInit {
 
   escolas: Escola[];
 
-  constructor(private escolaService: EscolaService) { }
+  constructor(private escolaService: EscolaService,
+    private router: Router) { }
 
   ngOnInit(): void {
     this.getEscolas();
@@ -20,6 +22,11 @@ export class EscolaListComponent implements OnInit {
   private getEscolas(){
     this.escolaService.getEscolasList().subscribe(data => {
       this.escolas = data;
-    })
+    });
+  }
+
+  updateEscola(id: number){
+    this.router.navigate(['escola-update', id]);
+
   }
 }
