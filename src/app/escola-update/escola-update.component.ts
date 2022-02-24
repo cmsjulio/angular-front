@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Escola } from '../escola';
+import { EscolaService } from '../escola.service';
 
 @Component({
   selector: 'app-escola-update',
@@ -8,15 +10,32 @@ import { Escola } from '../escola';
 })
 export class EscolaUpdateComponent implements OnInit {
 
-  constructor() { }
+  id: number;
+  escola : Escola = new Escola ();
+  constructor(private escolaService : EscolaService,
+    private route: ActivatedRoute,
+    private router: Router) { }
   
 
   ngOnInit(): void {
+    this.id = this.route.snapshot.params['id'];
+
+    this.escolaService.obterEscolaPorId(this.id).subscribe(data => {
+      this.escola = data;
+    }, error => console.log(error));
   }
 
-  escola : Escola = new Escola ();
   
-  onSubmit(){}
+  onSubmit(){
+    this.escolaService.atualizarEscola(this.id, this.escola).subscribe( data => {
+    this.goToEscolaList();
+    },
+    error => console.log(error));
+  }
+
+  goToEscolaList(){
+    this.router.navigate(['/escolas']);
+  }
 
 
 

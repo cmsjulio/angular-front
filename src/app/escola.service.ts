@@ -21,4 +21,14 @@ export class EscolaService {
   criarEscola(escola: Escola): Observable<Object>{
     return this.httpClient.post(`${this.baseURL}`, escola);
   }
+
+  // para obter escola por ID
+  obterEscolaPorId(id:number): Observable<Escola>{
+    return this.httpClient.get<Escola>(`${this.baseURL}/${id}`);
+  }
+
+  // para atualizar escola
+  atualizarEscola(id: number, escola: Escola): Observable<Object>{
+    return this.httpClient.put(`${this.baseURL}/${id}`, escola);
+  }
 }
